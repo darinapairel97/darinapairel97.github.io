@@ -63,6 +63,9 @@ class App extends Component {
         this.viewPortfolio = this.viewPortfolio.bind(this)
         this.deleteRepo = this.deleteRepo.bind(this)
     }
+    componentDidMount(){
+        // fetch into localstorage
+    }
 
     getLocation(userData, localKey){
         if (navigator.geolocation) {
