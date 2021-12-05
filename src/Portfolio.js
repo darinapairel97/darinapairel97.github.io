@@ -1,5 +1,5 @@
 import React from "react"
-import {withRouter} from "react-router-dom"
+// import {withRouter} from "react-router-dom"
 
 // component imports
 import DialogWindow from "./DialogWindow"
@@ -17,13 +17,16 @@ import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import theme from './theme.js'
 
-
 class Portfolio extends React.Component{
     constructor(props){
         super(props)
 
         this.renderPortfolio = this.renderPortfolio.bind(this)
     }
+    // componentDidMount(){
+    //     VK.api('users.get', {fields: 'photo_200'}, (data)=>console.log("data.responce", data.responce))
+
+    // }
 
     githubOnChange = (e) => {
         const newLogin = e.target.value
@@ -138,7 +141,7 @@ class Portfolio extends React.Component{
             <div>
 
                 { !this.props.vk.read?
-                    <DialogWindow childElm={<VkAuth VKOnAuth={this.props.VKOnAuth}/>} btnText={"Войти"}/>
+                    <DialogWindow childElm={<VkAuth callbackFn={this.props.cbForVkAuth} VKOnAuth={this.props.VKOnAuth}/>} btnText={"Войти"}/>
                     :
                      this.renderPortfolio()
                 }

@@ -4,8 +4,8 @@ import { HashRouter as Router, Route, Link, Switch } from "react-router-dom"
 // component imports
 import Portfolio from './Portfolio'
 import PortfolioList from './PortfolioList'
-import VkAuth from './VkAuth'
-import DialogWindow from './DialogWindow'
+// import VkAuth from './VkAuth'
+// import DialogWindow from './DialogWindow'
 
 
 
@@ -58,6 +58,7 @@ class App extends Component {
         }
         this.state = this.initialState
 
+        this.getPhotoVk = this.getPhotoVk.bind(this)
         this.getLocation = this.getLocation.bind(this)
         this.viewPortfolio = this.viewPortfolio.bind(this)
         this.deleteRepo = this.deleteRepo.bind(this)
@@ -87,7 +88,6 @@ class App extends Component {
                         timestamp - Время извлечения информации.
                     }
                     */
-                    console.log('position', position)
                     let prevState = {...this.state};
 
                     prevState.location.latitude = position.coords.latitude;
@@ -128,9 +128,11 @@ class App extends Component {
         let userData = this.state
 
         newVk.name =`${data['first_name']} ${data['last_name']}`
-        newVk.photo = data['photo']
+        console.log('data from VKOnAuth', data)
         newVk.read = true
         newVk.id = data.uid
+
+        this.getPhotoVk(data.uid)
 
         if (localStorage[`user_${newVk.id}`] === undefined){
             localStorage[`user_${newVk.id}`] = JSON.stringify({...this.state, vk: newVk})
@@ -156,13 +158,14 @@ class App extends Component {
         this.setState({...userData, current_uid: newVk.id, view_id: newVk.id})
     }
 
-    onSubmitUser = ({VKname, gitLogin, age, address, qual, phone, mail, langs}) => {
+    onSubmitUser = ({VKname, photo, gitLogin, age, address, qual, phone, mail, langs}) => {
 
         this.setState((state)=> {
 
             let newState = {...state}
-            let userData;
+            let userData
 
+            newState.vk.photo = photo
             newState.vk.name = VKname
             newState.data.age = age
             newState.data.address = address
@@ -170,14 +173,14 @@ class App extends Component {
             newState.data.phone = phone
             newState.data.mail = mail
             newState.data.langs = langs
-            console.log('this.state.data.langs', this.state.data.langs)
+            
             try{
                 userData = JSON.parse(localStorage[`user_${this.state.current_uid}`])
             }
             catch (e) { userData = this.state; console.log('HARD ERROR', e) }
 
             userData.data = newState.data;
-            userData.vk.name= newState.vk.name;
+            userData.vk= newState.vk;
 
 
             if (state.github.gitLogin !== gitLogin) {
@@ -193,9 +196,33 @@ class App extends Component {
         })
     }
 
+    
+    getPhotoVk = (uid) => {
+        console.log("getPhotoVk")
+        const link = `https://api.vk.com/method/users.get?user_ids=${uid}&fields=photo_200&v=5.131&callback=newVkPhotoCb&access_token=cd46499acd46499acd46499a23cd211c73ccd46cd46499a9140d202a963ef24d0c32a72`
+        let script = document.createElement('script')
+        script.src = link
+        document.body.append(script)
+        
+
+        // fetch(`https://api.vk.com/method/users.get?user_ids=${uid}&fields=photo_200&v=5.131&callback=callbackFunc&access_token=cd46499acd46499acd46499a23cd211c73ccd46cd46499a9140d202a963ef24d0c32a72`)
+        //     .then(res=>res.json())
+        //     .then(json=>{
+        //         console.log('fetching ')
+        //         this.setState(state => {
+        //             let newState = {...state}
+        //             newState.vk.photo = json.response[0].photo_200
+        //             return newState
+        //         })
+                // let newVkPhoto = {...this.state.vk.photo}
+                
+                // newVkPhoto = json.response[0].photo_200
+                // this.setState({...this.state, newVkPhoto})
+            // }) 
+    }
+
     gitFetchUser = (login) => {
-        console.log(localStorage)
-        console.log(this.props)
+        
         const gitInpVal = login || this.gitLogin|| this.state.github.gitLogin
 
         ![undefined, ''].includes(gitInpVal) ?
@@ -286,6 +313,7 @@ class App extends Component {
         const portfolio = () => <Portfolio deleteRepo={this.deleteRepo}
                                         onSubmitUser={this.onSubmitUser}
                                         VKOnAuth={this.VKOnAuth}
+                                        // cbForVkAuth={this.cbForVkAuth}
                                         current_uid={this.state.current_uid}
                                         view_id={this.state.view_id}
                                         vk={this.state.vk}
@@ -321,6 +349,26 @@ class App extends Component {
                             <Route path="/:id" exact render={portfolio}/>
                             </Switch>
                         </div>
+
+                        <script type="text/javascript">
+
+                            {
+                                function newVkPhotoCb(json) {
+                                    console.log('fetching photo')
+                                        this.setState(state => {
+                                            let newState = {...state}
+                                            newState.vk.photo = json.response[0].photo_200
+                                            return newState
+                                        })
+                                }
+                            }
+                            {
+
+                                this.state.vk.read?
+                                this.getPhotoVk(this.state.vk.id)
+                                : null
+                            }
+                        </script>
                     </div>
                     </MuiThemeProvider>
                 </Router>

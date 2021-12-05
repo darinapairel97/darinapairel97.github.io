@@ -24,9 +24,19 @@ dialog {
     bottom:-40%;
 }
 .saveBtn{
-    font-size: 12px;
     margin:10px;
 }
+.saveBtn + button, .saveBtn{
+    font-size: .9rem !important;    
+    width: 205px;
+}
+.bntContainer{
+    flex-direction: column;
+    height: 96px;
+    justify-content: space-between;
+
+}
+
 .option-abs{
     position: relative;
     z-index: 1000;

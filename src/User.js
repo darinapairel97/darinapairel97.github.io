@@ -10,8 +10,9 @@ import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar'
 import FilledInput from '@material-ui/core/FilledInput'
 import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
 
+
+// ДОБАВИТЬ ПОЛЕ ДЛЯ ЗАГРУЗКИ ФОТО ПО URL 
 
 class User extends React.Component{
     constructor(props) {
@@ -31,6 +32,7 @@ class User extends React.Component{
     handleSave(){
         this.props.onSubmitUser({
             VKname: document.getElementsByClassName("user_inp__name")[0].firstElementChild.value,
+            photo: document.getElementsByClassName("user_inp__photo")[0].firstElementChild.value,
             gitLogin: document.getElementsByClassName("user_inp__gitLogin")[0].firstElementChild.value,
             age: Number(document.getElementsByClassName("user_inp__age")[0].firstElementChild.value),
             address: document.getElementsByClassName("user_inp__address")[0].firstElementChild.value,
@@ -43,7 +45,6 @@ class User extends React.Component{
 
     deleteUserInfo(){
         localStorage.removeItem(`user_${this.props.current_uid}`)
-
 
         document.getElementsByClassName("saveBtn")[0].disabled = true;
     }
@@ -69,9 +70,9 @@ class User extends React.Component{
             return (
                 // (this.props.vk.photo !== "" && this.props.vk.name !== "" ) ?
                     <div className={"container"}>
-                        <div className={"container container-column"}>
+                        <div className={"container container-column "}>
                             <Avatar src={this.props.vk.photo} id={"avatar_big"} alt="user photo"/>
-                            <div className={"container container-buttons"}>
+                            <div className={"container container-buttons bntContainer"}>
                                 <Button variant="contained" className={`saveBtn`} onClick={this.handleSave}>Сохранить</Button>
                                 <Button variant="contained" onClick={this.deleteUserInfo}>Удалить портфолио</Button>
                             </div>
@@ -81,6 +82,7 @@ class User extends React.Component{
                             <form className={`container container-column`}>
                                 <Typography variant="h6">О себе</Typography>  
                                 <FilledInput type="text" className={`text user_inp__name`}  placeholder="имя" defaultValue={ this.props.vk.name }/>
+                                <FilledInput  className={`text user_inp__photo`}  placeholder="url фото" defaultValue={ this.props.vk.photo }/>
                                 <FilledInput className={`user_inp__gitLogin text`} type="text" placeholder="логин github" defaultValue={this.props.github.gitLogin}/>
                                     {/* <ButtonBase  onClick={this.props.gitFetchUser}>{(!this.props.github.read)?"Добавить":"Изменить"}</ButtonBase> */}
                                 <FilledInput type="number" placeholder="возраст" className={`user_inp__age text`} defaultValue={this.props.data.age}/>

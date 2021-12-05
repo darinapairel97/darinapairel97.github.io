@@ -84,7 +84,7 @@ class PortfolioList extends React.Component{
                 </Select>
                 <div className={`${classes.flex} ${classes.flexSpaceBetween}`}>
                     <div>
-                        {this.state.filteredData.map((item, i) =>  !item.vk.name? null:<PortfolioItem key={i} viewPortfolio={this.props.viewPortfolio} item = {item} /> )}
+                        {this.state.filteredData.map( (item, i) =>  !item.vk.name? null:<PortfolioItem key={i} viewPortfolio={this.props.viewPortfolio} item = {item} /> )}
 
                     </div>
                     <Map data = {this.state.filteredData}/>

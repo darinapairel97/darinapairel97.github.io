@@ -76,8 +76,7 @@ class Map extends React.Component{
     }
 
     componentDidUpdate(prevProps){
-        console.log('prevProps', prevProps)
-        console.log('this.prop', this.props.data)
+        
         if (prevProps.data !== this.props.data){
             this.buildMarkers()
         }
