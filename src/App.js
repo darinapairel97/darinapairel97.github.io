@@ -64,7 +64,6 @@ class App extends Component {
         fetch('https://my-json-server.typicode.com/darinapairel97/darinapairel97.github.io/users')
         .then(res=>res.json())
         .then(users => {
-            console.log('users', users)
             this.setState({...this.state, users})
             users.map(user=> localStorage[`user_${user.vk.id}`] = JSON.stringify(user))
         })

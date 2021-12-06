@@ -3,8 +3,8 @@ import VK, { Auth } from "react-vk";
 
 export default (props)=>{
         return (
-            <VK apiId={6772116} options>
-                {/*6772201*/} 
+            <VK apiId={6772201} options>
+                {/*6772116*/} 
                 <Auth options={{
                     onAuth: (data)=> props.VKOnAuth(data)
                 }}/>

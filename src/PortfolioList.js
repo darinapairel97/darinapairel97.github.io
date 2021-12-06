@@ -22,8 +22,6 @@ class PortfolioList extends React.Component{
 
         for(const key in localStorage){
             if (key.includes('user_')){
-                console.log('localStorage[key]',localStorage[key])
-
                 try {
                     data.push(JSON.parse(localStorage[key]))
                 } catch (e) {}
