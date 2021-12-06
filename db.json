@@ -60,7 +60,7 @@
                 "qual": "Product Manager", 
                 "phone": "8-493-170-9623", 
                 "mail": "Nathan@yesenia.net",
-                "langs": ['web-analytics', 'MVP', 'Growth hacking', 'UX/UI interface prototype']                
+                "langs": ["web-analytics", "MVP", "Growth hacking", "UX/UI interface prototype"]                
             }, 
             "github": {
                 "gitLogin": "",
@@ -83,7 +83,7 @@
                 "qual": "Java Engineer",
                 "phone": "8-024-648-3804",
                 "mail": "Chaim_McDermott@dana.io",
-                "langs": ['Git', 'Java SE', 'Spring Framework', 'PostgreSQL']
+                "langs": ["Git", "Java SE", "Spring Framework", "PostgreSQL"]
             },
             "github": {
                 "gitLogin": "",
