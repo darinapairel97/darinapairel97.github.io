@@ -2,17 +2,11 @@ import React from 'react'
 import './styleUser.css'
 import Select from 'react-select/lib/Creatable'
 
-// components import
-import {VkAuth} from './VkAuth'
-
 // material-ui imports
 import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar'
 import FilledInput from '@material-ui/core/FilledInput'
 import Typography from '@material-ui/core/Typography'
-
-
-// ДОБАВИТЬ ПОЛЕ ДЛЯ ЗАГРУЗКИ ФОТО ПО URL 
 
 class User extends React.Component{
     constructor(props) {
@@ -48,8 +42,10 @@ class User extends React.Component{
 
         document.getElementsByClassName("saveBtn")[0].disabled = true;
     }
-    handleChange = (value, actionMeta) => {
+    handleChange = (value) => {
         let val = value.map(arr=>arr['value'])
+        console.log('val', val)
+        console.log('value', value)
         this.setState({ langs: value });
     };
     handleInputChange = (inputValue) => {

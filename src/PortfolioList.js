@@ -61,7 +61,7 @@ class PortfolioList extends React.Component{
             newData = newData.filter(item => this.isInStr(item.vk.name, e.target.value))
         } else if (searchBy === 'city'){
             newData = newData.filter(item => this.isInStr(item.data.address, e.target.value))
-        } else if (searchBy == 'pLang'){
+        } else if (searchBy === 'pLang'){
             newData = newData.filter(item => this.isInStr(item.data.langs, e.target.value))
         }
 

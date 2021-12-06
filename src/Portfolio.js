@@ -87,7 +87,7 @@ class Portfolio extends React.Component{
                             {
                                 <Paper className={this.props.classes.tagsContainer} style={this.props.data.langs.length === 0 ?{display:"none"}:{display:"flex"}}>
                                     {this.props.data.langs.map((el, i) =>
-                                        <Chip key={i} label={el.label}/>)}
+                                        <Chip key={i} label={typeof(el) === 'string'? el : el.label}/>)}
                                     </Paper>
                             }
                             <Typography component={'span'} className={`${this.props.classes.portfolio_home} repos`} variant="body2">

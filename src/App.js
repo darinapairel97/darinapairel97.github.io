@@ -4,10 +4,6 @@ import { HashRouter as Router, Route, Link, Switch } from "react-router-dom"
 // component imports
 import Portfolio from './Portfolio'
 import PortfolioList from './PortfolioList'
-// import VkAuth from './VkAuth'
-// import DialogWindow from './DialogWindow'
-
-
 
 // material-ui imports
 import theme from "./theme";
@@ -59,7 +55,6 @@ class App extends Component {
         }
         this.state = this.initialState
 
-        this.getPhotoVk = this.getPhotoVk.bind(this)
         this.getLocation = this.getLocation.bind(this)
         this.viewPortfolio = this.viewPortfolio.bind(this)
         this.deleteRepo = this.deleteRepo.bind(this)
@@ -68,13 +63,10 @@ class App extends Component {
         // fetch into localstorage
         fetch('https://my-json-server.typicode.com/darinapairel97/darinapairel97.github.io/users')
         .then(res=>res.json())
-        .then(users=> {
+        .then(users => {
+            console.log('users', users)
             this.setState({...this.state, users})
-            users.map(user=>{
-                localStorage[`user_${user.vk.id}`] = JSON.stringify(user)
-                console.log("localStorage", localStorage)
-            })
-            //localStorage[`user_${users}`]
+            users.map(user=> localStorage[`user_${user.vk.id}`] = JSON.stringify(user))
         })
 
     }
@@ -147,8 +139,6 @@ class App extends Component {
         newVk.read = true
         newVk.id = data.uid
 
-        this.getPhotoVk(data.uid)
-
         if (localStorage[`user_${newVk.id}`] === undefined){
             localStorage[`user_${newVk.id}`] = JSON.stringify({...this.state, vk: newVk})
             userData.vk = newVk
@@ -209,31 +199,6 @@ class App extends Component {
 
             return newState
         })
-    }
-
-    
-    getPhotoVk = (uid) => {
-        console.log("getPhotoVk")
-        const link = `https://api.vk.com/method/users.get?user_ids=${uid}&fields=photo_200&v=5.131&callback=newVkPhotoCb&access_token=cd46499acd46499acd46499a23cd211c73ccd46cd46499a9140d202a963ef24d0c32a72`
-        let script = document.createElement('script')
-        script.src = link
-        document.body.append(script)
-        
-
-        // fetch(`https://api.vk.com/method/users.get?user_ids=${uid}&fields=photo_200&v=5.131&callback=callbackFunc&access_token=cd46499acd46499acd46499a23cd211c73ccd46cd46499a9140d202a963ef24d0c32a72`)
-        //     .then(res=>res.json())
-        //     .then(json=>{
-        //         console.log('fetching ')
-        //         this.setState(state => {
-        //             let newState = {...state}
-        //             newState.vk.photo = json.response[0].photo_200
-        //             return newState
-        //         })
-                // let newVkPhoto = {...this.state.vk.photo}
-                
-                // newVkPhoto = json.response[0].photo_200
-                // this.setState({...this.state, newVkPhoto})
-            // }) 
     }
 
     gitFetchUser = (login) => {
@@ -328,10 +293,8 @@ class App extends Component {
         const portfolio = () => <Portfolio deleteRepo={this.deleteRepo}
                                         onSubmitUser={this.onSubmitUser}
                                         VKOnAuth={this.VKOnAuth}
-                                        // cbForVkAuth={this.cbForVkAuth}
                                         current_uid={this.state.current_uid}
                                         view_id={this.state.view_id}
-                                        //user = user
                                         vk={this.state.vk}
                                         github={this.state.github}
                                         data={this.state.data}
@@ -364,26 +327,6 @@ class App extends Component {
                             <Route path="/:id" exact render={portfolio}/>
                             </Switch>
                         </div>
-
-                        {/* <script type="text/javascript">
-
-                            {
-                                function newVkPhotoCb(json) {
-                                    console.log('fetching photo')
-                                        this.setState(state => {
-                                            let newState = {...state}
-                                            newState.vk.photo = json.response[0].photo_200
-                                            return newState
-                                        })
-                                }
-                            }
-                            { 
-
-                                this.state.vk.read?
-                                this.getPhotoVk(this.state.vk.id)
-                                : null
-                            }
-                        </script> */}
                     </div>
                     </MuiThemeProvider>
                 </Router>
