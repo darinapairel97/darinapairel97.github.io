@@ -38,8 +38,6 @@ class Map extends React.Component{
         let bounds = new google.maps.LatLngBounds();
 
         this.state.markers.forEach((m) => {m.setMap(null)})
-        this.setState({...this.state, markers: []})
-        console.log('map data', this.props.data)
         this.props.data.forEach((item) => {
             if (item.location !== undefined){
                 let latitude = parseFloat(item.location.latitude)
@@ -55,7 +53,7 @@ class Map extends React.Component{
                     marker['infowindow'] = new google.maps.InfoWindow({
                         content: `
                             <div class="info-map-wrap">
-                                <img src="${item.vk.photo}">
+                                <img src="${item.vk.photo}" height=200 width=200 style="object-fit:cover">
                                 <span>${item.vk.name}</span>
                             </div>
                         `
@@ -74,10 +72,11 @@ class Map extends React.Component{
     }
 
     componentDidUpdate(prevProps){
-        
-        if (prevProps.data !== this.props.data){
-            this.buildMarkers()
-        }
+
+         this.buildMarkers()
+        // if (prevProps.data !== this.props.data){
+        //     this.buildMarkers()
+        // }
     }
 
     componentDidMount(){
