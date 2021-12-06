@@ -143,7 +143,7 @@ class App extends Component {
         let userData = this.state
 
         newVk.name =`${data['first_name']} ${data['last_name']}`
-        console.log('data from VKOnAuth', data)
+        newVk.photo = data['photo'].replace(/amp;/g,'')
         newVk.read = true
         newVk.id = data.uid
 
@@ -302,7 +302,6 @@ class App extends Component {
          })
         localStorage[`user_${this.state.current_uid}`] = JSON.stringify(this.state)
     }
-    // НУЖНО ОТРИСОВАТЬ ПОРТФОЛИО ПРИ ПЕРЕХОДЕ ПО ССЫЛКЕ СО СТРАНИЦЫ "СПИСОК ПОРТФОЛИО"
 
     viewPortfolio(id){
         if (this.state.current_uid === null && id === null){
