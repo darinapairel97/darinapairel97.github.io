@@ -14,8 +14,13 @@
                 "qual": "photographer", 
                 "phone": "7-770-736-8031", 
                 "mail": "Sincere@april.biz",
-                "langs": "", 
-                "gitLogin":""
+                "langs": []
+            },
+            "github": {
+                "gitLogin": "",
+                "gitBio": "",
+                "read": false,
+                "gitRepos": []
             }
         },
         {
@@ -32,8 +37,13 @@
                 "qual": "engineer", 
                 "phone": "7-463-123-4447", 
                 "mail": "Shanna@melissa.tv",
-                "langs": "", 
-                "gitLogin":""
+                "langs": []
+            },
+            "github": {
+                "gitLogin": "",
+                "gitBio": "",
+                "read": false,
+                "gitRepos": []
             }
         },
         {
@@ -50,26 +60,36 @@
                 "qual": "Product Manager", 
                 "phone": "8-493-170-9623", 
                 "mail": "Nathan@yesenia.net",
-                "langs": "web-analytics, MVP, Growth hacking, UX/UI interface prototype", 
-                "gitLogin":""
+                "langs": ["web-analytics, MVP, Growth hacking, UX/UI interface prototype"]                
+            }, 
+            "github": {
+                "gitLogin": "",
+                "gitBio": "",
+                "read": false,
+                "gitRepos": []
             }
         },
         {
             "vk": {
-                "name": "Glenna Reichert", 
-                "photo": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80", 
-                "read": true, 
+                "name": "Glenna Reichert",
+                "photo": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+                "read": true,
                 "id": 4445337
-            }, 
+            },
             "data": {
-                "fetching": false, 
-                "age": "46", 
-                "address": "Douglas Extension Apt. 556 Gwenborough 76495-3109", 
-                "qual": "Java Engineer", 
-                "phone": "8-024-648-3804", 
+                "fetching": false,
+                "age": "46",
+                "address": "Douglas Extension Apt. 556 Gwenborough 76495-3109",
+                "qual": "Java Engineer",
+                "phone": "8-024-648-3804",
                 "mail": "Chaim_McDermott@dana.io",
-                "langs": "Git, Java SE, Spring Framework, PostgreSQL", 
-                "gitLogin":"darinapairel97"
+                "langs": ["Git, Java SE, Spring Framework, PostgreSQL"],
+            },
+            "github": {
+                "gitLogin": "",
+                "gitBio": "",
+                "read": false,
+                "gitRepos": []
             }
         }
     ]
