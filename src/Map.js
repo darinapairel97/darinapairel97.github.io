@@ -30,7 +30,6 @@ class Map extends React.Component{
     buildMarkers(m){
 
         let map = this.state.map || m;
-        console.log('map', map)
         if (map == null) return;
 
         const google = window.google;
