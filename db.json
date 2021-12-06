@@ -7,10 +7,11 @@
                 "read": true, 
                 "id": 12334525
             }, 
+            "location": {"longitude": 37.527540, "latitude": 55.831860, "city": "Moskva"},
             "data": {
                 "fetching": false, 
                 "age": "27", 
-                "address": "Kulas Light Apt. 556 Gwenborough 92998-3874", 
+                "address": "Matrosa Zheleznyaka Bul'var, Moskva, Russia, 125239", 
                 "qual": "photographer", 
                 "phone": "7-770-736-8031", 
                 "mail": "Sincere@april.biz",
@@ -30,10 +31,11 @@
                 "read": true, 
                 "id": 34544365
             }, 
+            "location": {"longitude": 27.653670, "latitude": 53.871710, "city": "Minsk"},
             "data": {
                 "fetching": false, 
                 "age": "40", 
-                "address": "Victor Plains Apt. 556 Gwenborough 92998-3874", 
+                "address": "Ordzhonikidze 7, Minsk, Belarus", 
                 "qual": "engineer", 
                 "phone": "7-463-123-4447", 
                 "mail": "Shanna@melissa.tv",
@@ -53,10 +55,11 @@
                 "read": true, 
                 "id": 9887640
             }, 
+            "location": {"longitude": 30.373341, "latitude": 60.040859, "city": " Sankt-Peterburg"},
             "data": {
                 "fetching": false, 
                 "age": "30", 
-                "address": "Douglas Extension Apt. 556 Gwenborough 92998-3874", 
+                "address": "Prospekt Kul'tury, 13, Sankt-Peterburg, Russia, 195274", 
                 "qual": "Product Manager", 
                 "phone": "8-493-170-9623", 
                 "mail": "Nathan@yesenia.net",
@@ -76,10 +79,11 @@
                 "read": true,
                 "id": 4445337
             },
+            "location": {"longitude": 30.33077203080548, "latitude": 59.90479655126803, "city": ""}, 
             "data": {
                 "fetching": false,
                 "age": "46",
-                "address": "Douglas Extension Apt. 556 Gwenborough 76495-3109",
+                "address": "Kiyevskaya Ulitsa, 28b, Sankt-Peterburg, Russia, 196084",
                 "qual": "Java Engineer",
                 "phone": "8-024-648-3804",
                 "mail": "Chaim_McDermott@dana.io",
