@@ -26,6 +26,7 @@ class App extends Component {
         this.initialState = {
             current_uid: null, // "6333607"
             view_id: undefined,
+            users: [],
             location: {
                 longitude: 0,
                 latitude: 0,
@@ -65,6 +66,17 @@ class App extends Component {
     }
     componentDidMount(){
         // fetch into localstorage
+        fetch('https://my-json-server.typicode.com/darinapairel97/darinapairel97.github.io/users')
+        .then(res=>res.json())
+        .then(users=> {
+            this.setState({...this.state, users})
+            users.map(user=>{
+                localStorage[`user_${user.vk.id}`] = JSON.stringify(user)
+                console.log("localStorage", localStorage)
+            })
+            //localStorage[`user_${users}`]
+        })
+
     }
 
     getLocation(userData, localKey){
@@ -290,6 +302,7 @@ class App extends Component {
          })
         localStorage[`user_${this.state.current_uid}`] = JSON.stringify(this.state)
     }
+    // НУЖНО ОТРИСОВАТЬ ПОРТФОЛИО ПРИ ПЕРЕХОДЕ ПО ССЫЛКЕ СО СТРАНИЦЫ "СПИСОК ПОРТФОЛИО"
 
     viewPortfolio(id){
         if (this.state.current_uid === null && id === null){
@@ -319,12 +332,13 @@ class App extends Component {
                                         // cbForVkAuth={this.cbForVkAuth}
                                         current_uid={this.state.current_uid}
                                         view_id={this.state.view_id}
+                                        //user = user
                                         vk={this.state.vk}
                                         github={this.state.github}
                                         data={this.state.data}
                                 />
 
-        const  portfolioList = ()=> <PortfolioList viewPortfolio={this.viewPortfolio} current_uid={this.state.current_uid}/>
+        const  portfolioList = () => <PortfolioList viewPortfolio={this.viewPortfolio} current_uid={this.state.current_uid}/>
         return (
 
                 <Router>
@@ -340,7 +354,6 @@ class App extends Component {
                                     <Typography className={this.props.classes.text} variant="subtitle1">Генератор портфолио</Typography>
                                     <Link className={`${this.props.classes.text} ${this.props.classes.link}`} to="/list"><Typography variant="subtitle1" color="inherit" >Список портфолио</Typography></Link>
                                     <Link onClick={() => {this.viewPortfolio(this.state.current_uid)}} className={`${this.props.classes.text} ${this.props.classes.link}` } to="/"><Typography variant="subtitle1" color="inherit" >Мое портфолио</Typography></Link>
-                                    {/*<Link onClick={() => {this.viewPortfolio(this.state.current_uid)}} className={`${this.props.classes.text} ${this.props.classes.link}` } to="/"><Typography variant="subtitle1" color="inherit" >Мое портфолио</Typography></Link>*/}
                                 </div>
                             </Toolbar>
                         </AppBar>
@@ -353,7 +366,7 @@ class App extends Component {
                             </Switch>
                         </div>
 
-                        <script type="text/javascript">
+                        {/* <script type="text/javascript">
 
                             {
                                 function newVkPhotoCb(json) {
@@ -365,13 +378,13 @@ class App extends Component {
                                         })
                                 }
                             }
-                            {
+                            { 
 
                                 this.state.vk.read?
                                 this.getPhotoVk(this.state.vk.id)
                                 : null
                             }
-                        </script>
+                        </script> */}
                     </div>
                     </MuiThemeProvider>
                 </Router>

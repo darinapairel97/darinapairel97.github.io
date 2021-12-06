@@ -13,7 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 function PortfolioItem(props){
 
     return(
-        <Link onClick={()=>{props.viewPortfolio(props.item.vk.id)}} to={generatePath("/:id", {id:props.item.vk.id})}>
+        <Link onClick={()=>{console.log(props.item); props.viewPortfolio(props.item.vk.id)}} to={generatePath("/:id", {id:props.item.vk.id})} >
 
             <Card className={`${props.classes.flex} ${props.classes.card}`}>
                 <div className={`${props.classes.flex} ${props.classes.flexCol}`}>

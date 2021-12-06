@@ -57,7 +57,7 @@ class Portfolio extends React.Component{
 
 
     renderPortfolio(){
-
+        // const data = JSON.parse(localStorage[`user_${id}`])
         const Lend = () => {
             return(
             <div className={`${this.props.classes.grid}`}>
