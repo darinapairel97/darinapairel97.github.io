@@ -8,9 +8,9 @@ import  PortfolioItem from './PortfolioItem'
 // material-ui imports
 import { withStyles } from '@material-ui/core/styles';
 import theme from './theme.js';
-import FilledInput from '@material-ui/core/FilledInput';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+
+import { FilledInput, FormControl, Select, MenuItem } from '@material-ui/core';
+
 
 class PortfolioList extends React.Component{
 
@@ -43,8 +43,9 @@ class PortfolioList extends React.Component{
     isInStr(str, substr){
         if(typeof (str) === 'string' && typeof (substr) === 'string'){
             return str.toUpperCase().indexOf(substr.toUpperCase()) > -1
-        } else if (Array.isArray(str)){
-            return str.map(i=>i.value.toUpperCase().indexOf(substr.toUpperCase())>-1).some(sub=>sub===true)
+        } else if (Array.isArray(str)) {
+
+            return substr.length===0? true: str.map(i=>i.toUpperCase().indexOf(substr.toUpperCase())>-1).some(sub=>sub===true)
         } else {
             return false
         }
@@ -75,17 +76,20 @@ class PortfolioList extends React.Component{
         const types = [{id: 'name', label: 'Имя'}, {id: 'pLang', label: 'Языки программирования'},{id: 'city', label: 'Локация'}]
         return(
             <div>
-                <FilledInput className={classes.input} onChange={this.searchHandle} />
+                <FormControl>
+                    <FilledInput className={classes.input} onChange={this.searchHandle} />
+                    <Select variant="outlined" className={`${classes.input} ${classes.inputSel}`} onChange={this.selectHandle} value={this.state.searchBy}>
+                        {types.map((itm, i) => {return (<MenuItem key={i} value={itm.id}>{itm.label}</MenuItem>)})}
+                    </Select>
+                </FormControl>
+                
 
-                <Select className={`${classes.input} ${classes.inputSel}`} onChange={this.selectHandle} value={this.state.searchBy}>
-                    {types.map((itm, i) => {return (<MenuItem key={i} value={itm.id}>{itm.label}</MenuItem>)})}
-                </Select>
                 <div className={`${classes.flex} ${classes.flexSpaceBetween}`}>
                     <div>
-                        {this.state.filteredData.map( (item, i) =>  !item.vk.name? null:<PortfolioItem key={i} viewPortfolio={this.props.viewPortfolio} item = {item} /> )}
+                        {this.state.filteredData.map( (item, i) =>  !item.vk.name? null:<PortfolioItem key={i} viewPortfolio={this.props.viewPortfolio} item={item} /> )}
 
                     </div>
-                    <Map data = {this.state.filteredData}/>
+                    <Map data={this.state.filteredData} viewPortfolio={this.props.viewPortfolio}/>
                 </div>
             </div>
         )

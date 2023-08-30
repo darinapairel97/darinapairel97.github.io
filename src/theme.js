@@ -59,7 +59,8 @@ const theme = createMuiTheme({
         borderRadius: "100%"
     },
     inputSel:{
-        position: "absolute"
+        position: "absolute",
+        right: 0,
     },
     input:{
         height:100
@@ -86,7 +87,18 @@ const theme = createMuiTheme({
     card:{
         width: 320,
         marginTop: 25,
-        background: "dodgerblue"
+        background: "#6FB8FF",
+        '&:hover': {
+        background: "#4BA6FF",
+
+        }
+    },
+    repo: { 
+        alignItems: 'center',
+        '&:hover': {
+            borderBottom: "white 2px solid",
+            width: "fit-content"
+        }
     },
     cardContent:{flex: '1 0 auto',},
     typography: { useNextVariants: true, htmlFontSize: 10 }

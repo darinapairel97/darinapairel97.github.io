@@ -23,10 +23,6 @@ class Portfolio extends React.Component{
 
         this.renderPortfolio = this.renderPortfolio.bind(this)
     }
-    // componentDidMount(){
-    //     VK.api('users.get', {fields: 'photo_200'}, (data)=>console.log("data.responce", data.responce))
-
-    // }
 
     githubOnChange = (e) => {
         const newLogin = e.target.value
@@ -43,10 +39,9 @@ class Portfolio extends React.Component{
             return (
                 <Typography className="repos" variant={"body2"}>
                     {repos.map((repo, i) => {
-
                         return repo?
-                            <div className={` ${this.props.classes.flex}`}>
-                                <Link key={i} href={repo.html_url}>{repo.name}</Link>{this.props.current_uid === this.props.view_id?<Button style={{width:"12px"}} onClick={()=>{this.props.deleteRepo(repos, repo)}}>x</Button>:null}
+                            <div className={` ${this.props.classes.flex} ${this.props.classes.repo}`}>
+                                <Link underline="none" key={i} href={repo.html_url}>{repo.name}</Link>{this.props.current_uid === this.props.view_id?<Button style={{width:"12px"}} onClick={()=>{this.props.deleteRepo(repos, repo)}}>x</Button>:null}
                             </div>
                             :
                             null
@@ -58,6 +53,7 @@ class Portfolio extends React.Component{
 
     renderPortfolio(){
         // const data = JSON.parse(localStorage[`user_${id}`])
+        console.log("portfolio", this.props)
         const Lend = () => {
             return(
             <div className={`${this.props.classes.grid}`}>
@@ -87,13 +83,14 @@ class Portfolio extends React.Component{
                             {
                                 <Paper className={this.props.classes.tagsContainer} style={this.props.data.langs.length === 0 ?{display:"none"}:{display:"flex"}}>
                                     {this.props.data.langs.map((el, i) =>
-                                        <Chip key={i} label={typeof(el) === 'string'? el : el.label}/>)}
+                                        <Chip style={{marginRight: '3px'}} key={i} label={typeof(el) === 'string'? el : el.label}/>)}
                                     </Paper>
                             }
-                            <Typography component={'span'} className={`${this.props.classes.portfolio_home} repos`} variant="body2">
-                                Список репозиториев на GitHub:
-                                {this.renderRepos(this.props.github.gitRepos)}
-                            </Typography>
+                                {!!this.props.github.gitRepos.length && (<Typography component={'span'} className={`${this.props.classes.portfolio_home} repos`} variant="body2">
+                                    Список репозиториев на GitHub:
+                                    {this.renderRepos(this.props.github.gitRepos)}
+                                </Typography>
+                                )}
                             <Typography component={'span'} className={`${this.props.classes.portfolio_home} bio`} variant="body2">
                                 {this.props.github.gitBio}
                             </Typography>
@@ -101,14 +98,12 @@ class Portfolio extends React.Component{
                     {/*</section>*/}
                   </Grid>
                   <Grid item xs={12}>
-                      {this.props.data.phone || this.props.data.mail?
+                      {(this.props.data.phone || this.props.data.mail) &&
                         <div>
                             <Typography component={'span'} className={this.props.classes.portfolio_home} variant="h6">Contact</Typography>
-                            {this.props.data.phone?<Typography component={'span'} variant="body2">Номер телефона: {this.props.data.phone}</Typography>:null}
-                            {this.props.data.mail?<Typography component={'span'} variant="body2"><a href={`mailto:${this.props.data.mail}`}>{this.props.data.mail}</a></Typography>:null}
+                            {this.props.data.phone && <Typography component={'span'} variant="body2">Номер телефона: {this.props.data.phone}</Typography>}
+                            {this.props.data.mail&&<Typography component={'span'} variant="body2"><a href={`mailto:${this.props.data.mail}`}>{this.props.data.mail}</a></Typography>}
                         </div>
-                          :
-                          null
                       }
                   </Grid>
               </Grid>

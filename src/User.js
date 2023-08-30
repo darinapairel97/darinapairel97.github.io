@@ -1,12 +1,10 @@
 import React from 'react'
 import './styleUser.css'
 import Select from 'react-select/lib/Creatable'
+import {btnClose} from './DialogWindow'
 
 // material-ui imports
-import Button from '@material-ui/core/Button'
-import Avatar from '@material-ui/core/Avatar'
-import FilledInput from '@material-ui/core/FilledInput'
-import Typography from '@material-ui/core/Typography'
+import {Button, Avatar, FilledInput, Typography} from '@material-ui/core'
 
 class User extends React.Component{
     constructor(props) {
@@ -35,6 +33,7 @@ class User extends React.Component{
             mail: document.getElementsByClassName("user_inp__mail")[0].firstElementChild.value,
             langs: this.state.langs
         })
+        btnClose()
     }
 
     deleteUserInfo(){
@@ -65,12 +64,12 @@ class User extends React.Component{
         if (this.props.vk !== undefined)
             return (
                 // (this.props.vk.photo !== "" && this.props.vk.name !== "" ) ?
-                    <div className={"container"}>
+                    <div className={"container wrapper"}>
                         <div className={"container container-column "}>
                             <Avatar src={this.props.vk.photo} id={"avatar_big"} alt="user photo"/>
                             <div className={"container container-buttons bntContainer"}>
-                                <Button variant="contained" className={`saveBtn`} onClick={this.handleSave}>Сохранить</Button>
-                                <Button variant="contained" onClick={this.deleteUserInfo}>Удалить портфолио</Button>
+                                <Button variant="flat" className={`saveBtn`} onClick={this.handleSave}>Сохранить</Button>
+                                <Button variant="primary" onClick={this.deleteUserInfo}>Удалить портфолио</Button>
                             </div>
                         </div>
                         <div className={"item-7"}>

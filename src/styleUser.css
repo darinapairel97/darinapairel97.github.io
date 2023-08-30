@@ -4,11 +4,15 @@
     height: 300px;
 }
 dialog {
+    padding: 25px;
     background: dodgerblue;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 .container{
     display:flex;
+}
+.wrapper{
+    padding: 20px 0;
 }
 .container-column{
     flex-direction: column
@@ -23,16 +27,18 @@ dialog {
     position: relative;
     bottom:-40%;
 }
-.saveBtn{
-    margin:10px;
-}
+
 .saveBtn + button, .saveBtn{
-    font-size: .9rem !important;    
+    font-size: 20px !important;    
+    font-weight: 500;
     width: 205px;
+    margin:10px;
+
 }
 .bntContainer{
     flex-direction: column;
-    height: 96px;
+    margin-right: 28px;
+    align-items: center;
     justify-content: space-between;
 
 }

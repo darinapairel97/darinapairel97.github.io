@@ -51,9 +51,22 @@ class Map extends React.Component{
 
                     marker['infowindow'] = new google.maps.InfoWindow({
                         content: `
-                            <div class="info-map-wrap">
-                                <img src="${item.vk.photo}" height=200 width=200 style="object-fit:cover">
-                                <span>${item.vk.name}</span>
+                            <div class="info-map-wrap" style="height: 240px;
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            align-items: center;
+                                                            justify-content: space-around;
+                            ">
+                                <img src="${item.vk.photo}" style="object-fit:cover; 
+                                                                    width:200px; 
+                                                                    height:200px; 
+                                                                    display:flex; 
+                                                                    flex-direction:column;
+                                ">
+                                
+                                <span style="padding-top:10px">${item.vk.name}</span>
+                                <span style="font-size:12px; font-weight:bold;">${item.data.qual}</span>
+                                
                             </div>
                         `
                     })
@@ -79,7 +92,7 @@ class Map extends React.Component{
     }
 
     componentDidMount(){
-
+        console.log("ITEMS", this.props.data, "")
         var map;
         const google = window.google;
         if (google !== undefined){
