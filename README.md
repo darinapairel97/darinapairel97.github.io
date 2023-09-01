@@ -1,8 +1,8 @@
-# Diploma Portfolio-generator project
+# [Diploma Portfolio-generator project](https://darinapairel97.github.io/)
 A project was developed in 2019 started in other repo and then published here as a diploma project. 
 
 It is written with React in a popular in that time approach - using class components.
-Stack: React, JavaScript, github+vk+google map API
+Stack: React (+react-router), JavaScript, github+vk+google map API
 
 This app is considered to be optimised, edited and fixed _to be a perfect piece of art_ (kidding).
 
